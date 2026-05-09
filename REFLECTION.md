@@ -40,11 +40,10 @@ I used AI tools throughout this project, primarily for:
 
 - **One specific catch:** The AI initially suggested GitHub Copilot Enterprise at $39/seat as cheaper than Cursor Teams at $40/seat. But Copilot Enterprise requires a separate GitHub Enterprise Cloud subscription (~$21/user/mo), making the real cost $60/seat. I caught this because I read the fine print on the pricing page.
 
-## 5. Self-evaluation across 6 dimensions (one sentence each)
+## 5. Self-evaluation across 5 dimensions (one sentence each)
 
-- **Discipline:** Shipped a complete, working MVP with all 6 features and documentation on day 1, with daily devlog entries.
-- **Code quality:** TypeScript strict mode, 18 passing tests, clean separation between audit logic, pricing data, and UI components.
-- **Design sense:** Premium dark theme with glass-morphism, gradient accents, JetBrains Mono for numbers, and micro-animations — not a generic Bootstrap page.
-- **Problem-solving:** The 4-dimension audit engine is the core IP — it's not just "compare prices" but a structured decision framework with confidence levels.
-- **Entrepreneurial thinking:** Credex CTA only appears for high-savings cases (>$500/mo), respecting users' intelligence rather than being a nag screen.
-- **Hard work:** Full-stack implementation including AI integration, email transactional flow, OG images, CI/CD, and 12 documentation files in one sprint.
+- **Discipline (9/10):** Shipped a complete, working MVP with all core features and documentation on day 1, with daily devlog entries maintained throughout.
+- **Code quality (8/10):** Maintained TypeScript strict mode, wrote 18 passing tests covering edge cases, and ensured clean separation between audit logic and UI components.
+- **Design sense (9/10):** Delivered a premium dark theme with glass-morphism, gradient accents, JetBrains Mono for numbers, and micro-animations rather than settling for a generic template.
+- **Problem-solving (9/10):** Engineered the 4-dimension audit engine as the core IP — it's not just "compare prices" but a structured decision framework with calculated confidence levels.
+- **Entrepreneurial thinking (8/10):** Ensured the Credex CTA only triggers for high-savings cases (>$500/mo) to respect the user's intelligence and prioritize lead quality over volume.
