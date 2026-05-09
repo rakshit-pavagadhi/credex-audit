@@ -6,6 +6,22 @@
 ![Next.js](https://img.shields.io/badge/Next.js-16-black)
 ![Tests](https://img.shields.io/badge/tests-18%20passing-green)
 
+**Live Demo:** [https://credex-audit-bay.vercel.app/](https://credex-audit-bay.vercel.app/)
+
+## Screenshots
+
+**Landing Page**
+![Landing Page](./docs/hero.png)
+
+**Audit Results**
+![Results Page](./docs/results.png)
+
+**Tools form**
+![Lead Capture](./docs/form.png)
+
+**FAQs**
+![Lead Capture](./docs/faq.png)
+
 ## What It Does
 
 Startups and teams input their current AI tool subscriptions, and the audit engine analyzes spending across four dimensions:
@@ -21,7 +37,7 @@ Results include a personalized AI-generated summary (via Google Gemini), a share
 
 ```bash
 # Clone and install
-git clone https://github.com/YOUR_USERNAME/credex-audit.git
+git clone https://github.com/rakshit-pavagadhi/credex-audit.git
 cd credex-audit
 npm install
 
@@ -50,6 +66,14 @@ npm run build
 | `SUPABASE_SERVICE_ROLE_KEY` | Optional* | Supabase service role key (server-side only). Required for real backend storage. |
 
 `*` If Supabase variables are not set, the app falls back to local JSON storage (`.local-db.json`) for development.
+
+## Decisions: 5 Trade-offs Made
+
+1. **Next.js API Routes vs Server Actions:** Chose API routes for the backend logic (instead of the newer Server Actions) to maintain a clear separation of concerns, making it easier to potentially extract the backend into a separate microservice later, and to ensure reliable integration with Vercel Edge functions for the dynamic OG image generation.
+2. **Supabase Client vs Prisma/ORM:** Opted for the direct Supabase JavaScript client rather than a heavier ORM like Prisma. This minimizes dependencies, significantly reduces serverless cold-start times on Vercel, and keeps the data access layer incredibly lean for an MVP that only needs simple `SELECT` and `INSERT` operations.
+3. **Google Gemini vs OpenAI/Anthropic:** Selected Google Gemini 2.5 Flash for the AI summary generation primarily because it offers a generous free tier (crucial for a weekend build). Its speed is excellent for real-time user feedback, and it handles the required JSON structuring perfectly without needing the more expensive OpenAI GPT-4o.
+4. **Custom Tailwind UI vs Component Library (e.g., shadcn/ui):** Built the UI entirely with raw Tailwind CSS rather than importing a pre-built component library. While this took slightly longer, it ensured the design felt bespoke, premium, and tightly controlled, rather than looking like every other dashboard.
+5. **Honeypot + IP Rate Limiting vs reCAPTCHA:** To prevent abuse on the lead capture form, I implemented a hidden honeypot field and in-memory rate limiting instead of a visible CAPTCHA. This trades maximum security for an absolutely frictionless user experience, prioritizing lead conversion for the MVP.
 
 ## Tech Stack
 
