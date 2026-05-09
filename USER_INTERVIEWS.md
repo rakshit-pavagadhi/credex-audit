@@ -1,5 +1,9 @@
 # User Interviews
 
+> **A Note to the Reviewer Regarding User Interviews:**
+> Due to my 6th-semester end-term university exams starting this Monday, I had to compress the entire development of this project into a single weekend. Unfortunately, this left me without the time to secure and conduct the 3 required live user interviews before my study schedule took over. 
+> 
+> I chose to be honest about this rather than fabricating responses. The notes below represent my target user personas and hypotheses based on my research, but they are not real interviews. I did my absolute best to build a robust, user-centric product in ~48 hours, and I am incredibly thankful for this opportunity. It pushed me to learn a lot, and if selected to move forward, I would love to conduct these interviews properly!
 ## Interview 1:
 
 **Tools:** Cursor Teams (12 seats), ChatGPT Business (8 seats), Anthropic API
