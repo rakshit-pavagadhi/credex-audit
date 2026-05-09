@@ -132,7 +132,3 @@ Drop this script tag on any page to embed the audit widget:
 ```
 
 `data-base-url`, `data-height`, and `data-title` are optional overrides.
-
-## License
-
-MIT
