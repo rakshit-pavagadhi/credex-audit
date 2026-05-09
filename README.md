@@ -10,19 +10,16 @@
 
 ## Screenshots
 
-**Landing Page**
+**Landing Page**<br>
 ![Landing Page](./public/docs/hero.png)
 
-
-**Audit Results**
+**Audit Results**<br>
 ![Results Page](./public/docs/results.png)
 
-
-**Tools form**
+**Tools form**<br>
 ![Lead Capture](./public/docs/form.png)
 
-
-**FAQs**
+**FAQs**<br>
 ![Lead Capture](./public/docs/faq.png)
 
 
