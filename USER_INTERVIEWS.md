@@ -1,6 +1,6 @@
 # User Interviews
 
-## Interview 1: Ravi S., CTO at a 12-person B2B SaaS startup (Series A)
+## Interview 1:
 
 **Tools:** Cursor Teams (12 seats), ChatGPT Business (8 seats), Anthropic API
 **Monthly AI spend:** ~$1,100
@@ -17,7 +17,7 @@
 
 ---
 
-## Interview 2: Priya M., Solo Founder at a pre-seed AI wrapper startup
+## Interview 2:
 
 **Tools:** Claude Pro, ChatGPT Plus, Cursor Pro, Gemini AI Pro
 **Monthly AI spend:** ~$80
@@ -34,7 +34,7 @@
 
 ---
 
-## Interview 3: Daniel K., Engineering Lead at a 30-person fintech (Series B)
+## Interview 3:
 
 **Tools:** GitHub Copilot Enterprise (25 seats), Claude Team Premium (10 seats), OpenAI API
 **Monthly AI spend:** ~$2,800
