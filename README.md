@@ -11,16 +11,16 @@
 ## Screenshots
 
 **Landing Page**
-![Landing Page](./docs/hero.png)
+![Landing Page](./public/docs/hero.png)
 
 **Audit Results**
-![Results Page](./docs/results.png)
+![Results Page](./public/docs/results.png)
 
 **Tools form**
-![Lead Capture](./docs/form.png)
+![Lead Capture](./public/docs/form.png)
 
 **FAQs**
-![Lead Capture](./docs/faq.png)
+![Lead Capture](./public/docs/faq.png)
 
 ## What It Does
 
