@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Credex AI Spend Audit
 
-## Getting Started
+> **Free AI spend analysis for startups.** Find out exactly where you're overspending on AI tools like Cursor, ChatGPT, Claude, and GitHub Copilot.
 
-First, run the development server:
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
+![Next.js](https://img.shields.io/badge/Next.js-16-black)
+![Tests](https://img.shields.io/badge/tests-18%20passing-green)
+
+## What It Does
+
+Startups and teams input their current AI tool subscriptions, and the audit engine analyzes spending across four dimensions:
+
+1. **Plan right-sizing** — Are you on a higher tier than you need?
+2. **Same-vendor savings** — Is there a cheaper plan from the same provider?
+3. **Cross-tool alternatives** — Could a competing tool do the same job for less?
+4. **Credex bulk credits** — Are you paying retail when bulk pricing is available?
+
+Results include a personalized AI-generated summary (via Google Gemini), a shareable URL with OG tags, and optional email capture.
+
+## Quick Start
 
 ```bash
+# Clone and install
+git clone https://github.com/YOUR_USERNAME/credex-audit.git
+cd credex-audit
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Edit .env.local with your API keys
+
+# Run locally
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Run tests
+npm test
+
+# Build for production
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `GEMINI_API_KEY` | Optional | Google Gemini API key for AI summaries. Falls back to template. |
+| `RESEND_API_KEY` | Optional | Resend API key for transactional emails. |
+| `NEXT_PUBLIC_BASE_URL` | Optional | Public URL for email links. Defaults to localhost. |
+| `SUPABASE_URL` | Optional* | Supabase project URL. Required for real backend storage. |
+| `SUPABASE_SERVICE_ROLE_KEY` | Optional* | Supabase service role key (server-side only). Required for real backend storage. |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`*` If Supabase variables are not set, the app falls back to local JSON storage (`.local-db.json`) for development.
 
-## Learn More
+## Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript (strict mode)
+- **Styling:** Tailwind CSS v4
+- **AI Summary:** Google Gemini 2.5 Flash (free tier)
+- **Email:** Resend
+- **Storage:** Supabase (with local JSON fallback for local dev)
+- **Testing:** Vitest (18 tests)
+- **CI/CD:** GitHub Actions (lint → typecheck → test → build)
+- **Deployment:** Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/
+│   ├── page.tsx            # Landing page
+│   ├── layout.tsx          # Root layout + SEO
+│   ├── globals.css         # Design system
+│   ├── audit/[id]/         # Shareable results page
+│   └── api/
+│       ├── audit/          # POST: run audit
+│       ├── lead/           # POST: email capture
+│       └── og/             # GET: dynamic OG images
+├── components/
+│   ├── SpendForm.tsx       # Multi-tool input form
+│   └── AuditResults.tsx    # Results display
+├── lib/
+│   ├── pricing-data.ts     # Verified pricing (May 2026)
+│   ├── audit-engine.ts     # Core audit logic
+│   ├── ai-summary.ts       # Gemini + fallback
+│   └── store.ts            # Supabase + local fallback store
+└── types/
+    └── index.ts            # TypeScript interfaces
+```
 
-## Deploy on Vercel
+## Supabase Setup (Real Backend)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Create two tables in Supabase SQL editor:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```sql
+create table if not exists audits (
+    id text primary key,
+    data jsonb not null,
+    created_at timestamptz default now()
+);
+
+create table if not exists leads (
+    email text primary key,
+    audit_id text not null,
+    data jsonb not null,
+    created_at timestamptz default now()
+);
+```
+
+Then set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` in your environment.
+
+## Deploy
+
+```bash
+# Deploy to Vercel
+npx vercel
+```
+
+Set environment variables in the Vercel dashboard under Settings → Environment Variables.
+
+## Embeddable Widget
+
+Drop this script tag on any page to embed the audit widget:
+
+```html
+<script
+    src="https://your-domain.com/api/widget"
+    data-base-url="https://your-domain.com"
+    data-height="760"
+    data-title="AI Spend Audit"
+></script>
+```
+
+`data-base-url`, `data-height`, and `data-title` are optional overrides.
+
+## License
+
+MIT
